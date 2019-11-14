@@ -17,20 +17,20 @@ import org.json.simple.parser.ParseException;
     	while(f)
     	{
         JSONParser jsonParser = new JSONParser();
-        String a="E:\\Java application\\Freshworks\\data\\data"+p+".json";
+        String a="E:\\Java application\\Freshworks\\data\\data"+p+".json";  //To read JSONFiles from a particular path
            
         try (FileReader reader = new FileReader(a))
         {p++;
-            Object obj = jsonParser.parse(reader);
- JSONObject pugazh=(JSONObject)obj;
+            Object obj = jsonParser.parse(reader);                           //To read all the JSONObjects and convert it to Java Objects
+ JSONObject pugazh=(JSONObject)obj;                                           //To read the JSONObject
      
              
                
-	JSONArray js=(JSONArray) pugazh.get("strikers");
+	JSONArray js=(JSONArray) pugazh.get("strikers");                       //To read the JSONArray of strikers
 	
 	
 	for(int i=0;i<js.size();i++)
-		parsestrikersObject((JSONObject)js.get(i));
+		parsestrikersObject((JSONObject)js.get(i));                    //To read all JSONObjects
 	
         }
         catch (FileNotFoundException e) {
@@ -44,11 +44,11 @@ import org.json.simple.parser.ParseException;
             
         }
     }
-    	  System.out.println(fo.toJSONString());
+    	  System.out.println(fo.toJSONString());                                   //To print the final JSONObjects
    }
     	
-    	static JSONArray strikers=new JSONArray();
-    	static JSONObject fo=new JSONObject();
+    	static JSONArray strikers=new JSONArray();                                  //To read strikers Array 
+    	static JSONObject fo=new JSONObject();                                      //To read all ojects from array
     private static void parsestrikersObject(JSONObject obj) throws IOException 
     {
                  
@@ -58,7 +58,7 @@ import org.json.simple.parser.ParseException;
          
        String Club = (String) obj.get("club"); 
         
-        Map<String,String>result=new HashMap<String,String>();
+        Map<String,String>result=new HashMap<String,String>();                          //To store all values of JSON objects of name and club
         result.put("name",Name);
         result.put("club",Club);
           
@@ -67,8 +67,8 @@ import org.json.simple.parser.ParseException;
         obj1.put("club",Club);
         strikers.add(obj1);
       fo.put("strikers", strikers);
-      FileOutputStream fout=new FileOutputStream("E:\\Java application\\Freshworks\\Merge\\merge1.json");
-      fout.write(fo.toJSONString().getBytes());
+      FileOutputStream fout=new FileOutputStream("E:\\Java application\\Freshworks\\Merge\\merge1.json");//To locate the Output file
+      fout.write(fo.toJSONString().getBytes());//To write the JSONObject in a desired file
     }
 }
        
